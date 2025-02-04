@@ -44,7 +44,7 @@
               <div class="flex space-x-2">
                 <button 
                   @click="addToCart(product)"
-                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200 flex items-center space-x-2 cursor-pointer"
+                  class="bg-gradient-to-r from-blue-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200 flex items-center space-x-2 cursor-pointer"
                 >
                   <svg 
                     class="h-5 w-5" 
