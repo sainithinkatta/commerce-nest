@@ -1,15 +1,30 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
-import ProductList from '@/views/ProductList.vue'
-import ProductDetails from '@/views/ProductDetails.vue'
+import { createStore } from 'vuex';
+import axios from 'axios';
 
-const routes = [
-  { path: '/', name: 'ProductList', component: ProductList },
-]
+const store = createStore({
+  state: {
+    products: [],
+  },
+  mutations: {
+    setProducts(state, products) {
+      state.products = products;
+    },
+  },
+  actions: {
+    fetchProducts({ commit }) {
+      axios
+        .get('https://fakestoreapi.com/products')
+        .then((response) => {
+          commit('setProducts', response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching products:', error);
+        });
+    },
+  },
+  getters: {
+    products: (state) => state.products,
+  },
+});
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
-
-export default router
+export default store;
