@@ -1,5 +1,9 @@
 <template>
   <div class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+
+    <!-- Toast Component -->
+    <Toast ref="toastRef" />
+
     <div class="max-w-7xl mx-auto mt-24">
       <!-- Loading State -->
       <div v-if="loading" class="max-w-5xl mx-auto">
@@ -55,7 +59,7 @@
               </div>
 
               <button
-                @click="addToCart(product)"
+                @click="addProductToCart(product)"
                 class="w-full bg-gradient-to-r from-blue-600 to-purple-700 text-white px-8 py-4 rounded-xl shadow-lg hover:from-blue-700 hover:to-purple-800 transition duration-300 ease-in-out transform hover:scale-102 flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,9 +83,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'ProductDetails',
+  components: {
+    Toast,
+  },
   data() {
     return {
       loading: true,
@@ -94,10 +102,12 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['fetchProduct']),
-    addToCart(product) {
-      console.log('Added to cart:', product);
+    ...mapActions(['fetchProduct', 'addToCart']),
+    async addProductToCart(product) {
+      await this.addToCart(product);
+      this.$refs.toastRef.showToast('Item added to cart!');
     },
+
     handleImageError(event) {
       event.target.src = 'https://via.placeholder.com/400?text=Product+Image';
     },

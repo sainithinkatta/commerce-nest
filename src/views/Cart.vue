@@ -44,7 +44,7 @@
   export default {
     computed: {
       cart() {
-        return this.$store.getters.cart; // Assuming you're using Vuex to manage cart state
+        return this.$store.getters.cart;
       },
       totalAmount() {
         return this.cart.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
