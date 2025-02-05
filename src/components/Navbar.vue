@@ -22,13 +22,6 @@
             </router-link>
 
             <router-link 
-            to="/products" 
-            class="text-white hover:text-gray-200 transition-colors font-medium text-sm"
-            >
-            Products
-            </router-link>
-
-            <router-link 
             to="/categories" 
             class="text-white hover:text-gray-200 transition-colors font-medium text-sm"
             >
@@ -81,11 +74,11 @@
                 
                 <!-- Cart Count Badge -->
                 <span 
-                    v-if="cartCount > 0"
+                    v-if="$store.getters.cartCount > 0"
                     class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full 
                             h-5 w-5 flex items-center justify-center animate-pulse"
-                >
-                    {{ cartCount }}
+                    >
+                    {{ $store.getters.cartCount }}
                 </span>
                 </button>
             </div>
@@ -121,9 +114,9 @@
 <script>
 export default {
     name: "Navbar",
-    data() {
-        return {
-            cartCount: 5, // Dynamic cart count
+    methods: {
+        toggleCart() {
+            this.$router.push({ name: 'Cart' });
         }
     }
 }

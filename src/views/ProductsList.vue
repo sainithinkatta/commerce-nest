@@ -7,17 +7,16 @@
         </p>
       </div>
 
+       <!-- Toast Component -->
+      <Toast ref="toastRef" />
+
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div 
           v-for="product in products" 
           :key="product.id" 
           class="block bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
         >
-
-          <router-link 
-            :to="'/product/' + product.id" 
-            class="block"
-          >
+          <router-link :to="'/product/' + product.id" class="block">
             <div class="relative overflow-hidden h-64 flex items-center justify-center">
               <img 
                 :src="product.image"
@@ -43,7 +42,7 @@
               </span>
 
               <button 
-                @click.stop="addToCart(product)" 
+                @click.stop="addProductToCart(product)" 
                 class="bg-gradient-to-r from-blue-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200 flex items-center space-x-2 cursor-pointer"
               >
                 <svg 
@@ -82,25 +81,32 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Toast from '@/components/Toast.vue';
 
 export default {
   name: 'ProductsList',
+  components: {
+    Toast,
+  },
   data() {
     return {
       loading: true,
-      error: null
+      error: null,
     };
   },
   computed: {
     ...mapState({
-      products: state => state.products
-    })
+      products: (state) => state.products,
+    }),
   },
   methods: {
-    ...mapActions([
-      'fetchProducts', 
-      'addToCart'
-    ]),
+    ...mapActions(['fetchProducts', 'addToCart']),
+    
+    async addProductToCart(product) {
+      await this.addToCart(product);
+      this.$refs.toastRef.showToast('Item added to cart!');
+    },
+
     handleImageError(event) {
       event.target.src = 'https://via.placeholder.com/150?text=Product+Image';
     },
@@ -110,11 +116,11 @@ export default {
       .then(() => {
         this.loading = false;
       })
-      .catch(error => {
+      .catch((error) => {
         this.error = 'Failed to load products';
         this.loading = false;
         console.error('Product fetch error:', error);
       });
-  }
-}
+  },
+};
 </script>
