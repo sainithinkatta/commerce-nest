@@ -25,6 +25,16 @@ const store = createStore({
     },
     setCart(state, cartData) {
       state.cart = cartData;
+    },
+    removeFromCart(state, productId) {
+      state.cart = state.cart.filter(item => item.id !== productId);
+    },
+    updateCartItemQuantity(state, { productId, change }) {
+      const item = state.cart.find(item => item.id === productId);
+      if (item) {
+        const newQuantity = Math.max(1, item.quantity + change);
+        item.quantity = newQuantity;
+      }
     }
   },
   actions: {
@@ -68,6 +78,33 @@ const store = createStore({
         })
         .catch(error => {
           console.error('Error adding to cart:', error);
+        });
+    },
+    removeFromCart({ commit }, productId) {
+      axios.delete(`https://fakestoreapi.com/carts/${productId}`)
+        .then(() => {
+          commit('removeFromCart', productId);
+        })
+        .catch(error => {
+          console.error('Error removing item from cart:', error);
+        });
+    },
+    updateQuantity({ commit, state }, { productId, change }) {
+      
+      const item = state.cart.find(item => item.id === productId);
+      if (!item) return;
+      
+      const newQuantity = Math.max(1, item.quantity + change);
+      
+      axios.put(`https://fakestoreapi.com/carts/${productId}`, {
+        date: new Date().toISOString().split('T')[0],
+        products: [{ productId, quantity: newQuantity }]
+      })
+        .then(() => {
+          commit('updateCartItemQuantity', { productId, change });
+        })
+        .catch(error => {
+          console.error('Error updating quantity:', error);
         });
     }
   },

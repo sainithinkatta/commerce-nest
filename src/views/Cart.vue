@@ -13,7 +13,24 @@
               <p class="text-sm text-gray-700">Category: {{ item.category }}</p>
               <div class="mt-2 flex items-center space-x-4">
                 <span class="text-gray-700">Price: ${{ item.price }}</span>
-                <span class="text-gray-700">Quantity: {{ item.quantity }}</span>
+                <!-- New quantity controls -->
+                <div class="flex items-center space-x-2">
+                  <button 
+                    @click="decreaseQuantity(item.id)"
+                    class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition duration-200"
+                  >
+                    -
+                  </button>
+                  <span class="w-8 text-center">{{ item.quantity }}</span>
+                  <button 
+                    @click="increaseQuantity(item.id)"
+                    class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition duration-200"
+                  >
+                    +
+                  </button>
+                </div>
+                <!-- Item total price -->
+                <span class="text-gray-700">Total: ${{ (item.price * item.quantity).toFixed(2) }}</span>
               </div>
               <button
                 @click="removeItemFromCart(item.id)"
@@ -41,19 +58,25 @@
 </template>
 
 <script>
-  export default {
-    computed: {
-      cart() {
-        return this.$store.getters.cart;
-      },
-      totalAmount() {
-        return this.cart.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
-      },
+export default {
+  computed: {
+    cart() {
+      return this.$store.getters.cart;
     },
-    methods: {
-      removeItemFromCart(productId) {
-        // remove cart logic..
-      },
+    totalAmount() {
+      return this.cart.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
     },
-  };
+  },
+  methods: {
+    removeItemFromCart(productId) {
+      this.$store.dispatch('removeFromCart', productId);
+    },
+    increaseQuantity(productId) {
+      this.$store.dispatch('updateQuantity', { productId, change: 1 });
+    },
+    decreaseQuantity(productId) {
+      this.$store.dispatch('updateQuantity', { productId, change: -1 });
+    }
+  },
+};
 </script>
