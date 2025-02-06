@@ -65,11 +65,11 @@
       <div class="bg-white rounded-xl shadow-md p-6 space-y-4">
         <div class="flex justify-between items-center border-b border-gray-100 pb-4">
           <span class="text-lg text-gray-600">Summary</span>
-          <span class="text-2xl font-bold text-gray-900">Total  - ${{ totalAmount }}</span>
+          <span class="text-2xl font-bold text-gray-900">Total Amount ${{ totalAmount }}</span>
         </div>
         
         <div class="flex justify-end pt-2">
-          <button class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 font-medium shadow-sm hover:shadow-md cursor-pointer">
+          <button class="bg-gradient-to-r from-blue-600 to-purple-700  text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 font-medium shadow-sm hover:shadow-md cursor-pointer">
             Proceed to Checkout
           </button>
         </div>
@@ -79,7 +79,7 @@
     <div v-else class="flex flex-col items-center justify-center py-16 bg-white rounded-xl shadow-md">
       <p class="text-xl text-gray-500 mb-4">Your cart is empty</p>
       <button 
-        class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 cursor-pointer"
+        class="bg-gradient-to-r from-blue-600 to-purple-700  text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 cursor-pointer"
         @click="$router.push('/')" 
       >
         Continue Shopping
