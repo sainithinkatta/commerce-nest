@@ -1,11 +1,13 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 
+const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+
 const store = createStore({
   state: {
     products: [],
     product: null,
-    cart: [],
+    cart: savedCart,
   },
   mutations: {
     setProducts(state, products) {
@@ -22,18 +24,26 @@ const store = createStore({
       } else {
         state.cart.push({ ...product, quantity: 1 });
       }
+
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     setCart(state, cartData) {
       state.cart = cartData;
+
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     removeFromCart(state, productId) {
       state.cart = state.cart.filter(item => item.id !== productId);
+
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     updateCartItemQuantity(state, { productId, change }) {
       const item = state.cart.find(item => item.id === productId);
       if (item) {
         const newQuantity = Math.max(1, item.quantity + change);
         item.quantity = newQuantity;
+
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       }
     }
   },
