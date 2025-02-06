@@ -30,14 +30,14 @@
               <div class="flex items-center space-x-2 bg-gray-50 rounded-lg p-1">
                 <button 
                   @click="decreaseQuantity(item.id)"
-                  class="w-8 h-8 flex items-center justify-center bg-white rounded-md hover:bg-gray-100 border border-gray-200 transition duration-200"
+                  class="w-8 h-8 flex items-center justify-center bg-white rounded-md hover:bg-gray-100 border border-gray-200 transition duration-200 cursor-pointer"
                 >
                   <span class="text-gray-600">-</span>
                 </button>
                 <span class="w-10 text-center font-medium text-gray-900">{{ item.quantity }}</span>
                 <button 
                   @click="increaseQuantity(item.id)"
-                  class="w-8 h-8 flex items-center justify-center bg-white rounded-md hover:bg-gray-100 border border-gray-200 transition duration-200"
+                  class="w-8 h-8 flex items-center justify-center bg-white rounded-md hover:bg-gray-100 border border-gray-200 transition duration-200 cursor-pointer"
                 >
                   <span class="text-gray-600">+</span>
                 </button>
@@ -53,7 +53,7 @@
             <!-- Remove Button -->
             <button
               @click="removeItemFromCart(item.id)"
-              class="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors duration-200 w-full md:w-auto"
+              class="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors duration-200 w-full md:w-auto cursor-pointer"
             >
               Remove
             </button>
@@ -69,7 +69,7 @@
         </div>
         
         <div class="flex justify-end pt-2">
-          <button class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 font-medium shadow-sm hover:shadow-md">
+          <button class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 font-medium shadow-sm hover:shadow-md cursor-pointer">
             Proceed to Checkout
           </button>
         </div>
@@ -79,7 +79,7 @@
     <div v-else class="flex flex-col items-center justify-center py-16 bg-white rounded-xl shadow-md">
       <p class="text-xl text-gray-500 mb-4">Your cart is empty</p>
       <button 
-        class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300"
+        class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 cursor-pointer"
         @click="$router.push('/')" 
       >
         Continue Shopping
