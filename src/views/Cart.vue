@@ -1,7 +1,5 @@
 <template>
-  <div class="cart-page px-4 py-8 max-w-7xl mx-auto bg-gray-50 min-h-screen">
-    <h2 class="text-3xl font-bold mb-8 text-gray-800">Your Cart</h2>
-
+  <div class="cart-page px-4 py-8 max-w-7xl mx-auto bg-gray-50 min-h-screen mt-15">
     <div v-if="cart.length > 0" class="space-y-8">
       <ul class="space-y-4">
         <li v-for="item in cart" :key="item.id" 

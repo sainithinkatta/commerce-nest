@@ -90,12 +90,13 @@ const store = createStore({
         });
     },
     updateQuantity({ commit, state }, { productId, change }) {
-      
       const item = state.cart.find(item => item.id === productId);
       if (!item) return;
-      
-      const newQuantity = Math.max(1, item.quantity + change);
-      
+    
+      const newQuantity = Math.min(15, Math.max(1, item.quantity + change));
+    
+      if (newQuantity === item.quantity) return; 
+    
       axios.put(`https://fakestoreapi.com/carts/${productId}`, {
         date: new Date().toISOString().split('T')[0],
         products: [{ productId, quantity: newQuantity }]
@@ -106,7 +107,7 @@ const store = createStore({
         .catch(error => {
           console.error('Error updating quantity:', error);
         });
-    }
+    }    
   },
   getters: {
     products: (state) => state.products,

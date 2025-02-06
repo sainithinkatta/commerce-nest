@@ -55,7 +55,7 @@
             <div class="relative">
                 <button 
                 @click="toggleCart"
-                class="text-white hover:bg-white/20 p-2 rounded-full transition-colors relative group"
+                class="text-white hover:bg-white/20 p-2 rounded-full transition-colors relative group cursor-pointer"
                 >
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
