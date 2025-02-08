@@ -5,6 +5,9 @@ export default {
     setProduct(state, product) {
       state.product = product;
     },
+    setSearchQuery(state, query) {
+      state.searchQuery = query;
+    },
     addToCart(state, product) {
       const existingItem = state.cart.find(item => item.id === product.id);
   

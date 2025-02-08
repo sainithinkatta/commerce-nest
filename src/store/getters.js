@@ -5,4 +5,16 @@ export default {
     cartCount: (state) => {
       return state.cart.reduce((total, item) => total + item.quantity, 0);
     },
+    filteredProducts: state => {
+      if (!state.searchQuery) return state.products;
+      
+      const query = state.searchQuery.toLowerCase();
+      return state.products.filter(product => {
+        return (
+          product.title.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query)
+        );
+      });
+    }
   };

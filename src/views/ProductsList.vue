@@ -2,13 +2,17 @@
   <div class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
       <div class="mb-10 mt-12 text-center">
-        <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+        <p v-if="!loading && products.length !== 0" class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
           Discover our latest collection of high-quality products
         </p>
       </div>
 
        <!-- Toast Component -->
       <Toast ref="toastRef" />
+
+      <div v-if="!loading && products.length === 0" class="text-center text-gray-500 text-lg py-10">
+        No products found
+      </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div 
@@ -96,8 +100,11 @@ export default {
   },
   computed: {
     ...mapState({
-      products: (state) => state.products,
+      searchQuery: state => state.searchQuery
     }),
+    products() {
+      return this.$store.getters.filteredProducts;
+    }
   },
   methods: {
     ...mapActions(['fetchProducts', 'addToCart']),

@@ -4,4 +4,5 @@ export default {
   products: [],
   product: null,
   cart: savedCart,
+  searchQuery: ''
 };
