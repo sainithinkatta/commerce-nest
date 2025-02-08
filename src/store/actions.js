@@ -1,8 +1,9 @@
 import axios from 'axios';
+import API_URLS from '../api/apiUrls';
 
 export default {
   fetchProducts({ commit }) {
-    return axios.get('https://fakestoreapi.com/products')
+    return axios.get(API_URLS.PRODUCTS)
       .then(response => {
         commit('setProducts', response.data);
       })
@@ -12,7 +13,7 @@ export default {
       });
   },
   fetchProduct({ commit }, productId) {
-    return axios.get(`https://fakestoreapi.com/products/${productId}`)
+    return axios.get(`${API_URLS.PRODUCTS}/${productId}`)
       .then(response => {
         commit('setProduct', response.data);
       })
@@ -22,7 +23,7 @@ export default {
       });
   },
   addToCart({ commit }, product) {
-    return axios.post('https://fakestoreapi.com/carts', {
+    return axios.post(API_URLS.CARTS, {
       userId: 5,
       date: new Date().toISOString().split('T')[0],
       products: [{ productId: product.id, quantity: 1 }],
@@ -38,7 +39,7 @@ export default {
       });
   },
   removeFromCart({ commit }, productId) {
-    return axios.delete(`https://fakestoreapi.com/carts/${productId}`)
+    return axios.delete(`${API_URLS.CARTS}/${productId}`)
       .then(() => {
         commit('removeFromCart', productId);
       })
@@ -54,7 +55,7 @@ export default {
     const newQuantity = Math.min(15, Math.max(1, item.quantity + change));
     if (newQuantity === item.quantity) return Promise.resolve();
 
-    return axios.put(`https://fakestoreapi.com/carts/${productId}`, {
+    return axios.put(`${API_URLS.CARTS}/${productId}`, {
       date: new Date().toISOString().split('T')[0],
       products: [{ productId, quantity: newQuantity }]
     })
@@ -67,7 +68,7 @@ export default {
       });
   },
   fetchCategories({ commit }) {
-    return axios.get('https://fakestoreapi.com/products/categories')
+    return axios.get(API_URLS.CATEGORIES)
       .then(response => {
         commit('setCategories', response.data);
       })
