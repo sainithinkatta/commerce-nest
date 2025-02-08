@@ -87,9 +87,7 @@ export default {
       return allProducts.value
         .filter(
           (product) =>
-            product.title.toLowerCase().includes(query) ||
-            product.description.toLowerCase().includes(query) ||
-            product.category.toLowerCase().includes(query)
+            product.title.toLowerCase().includes(query)
         )
         .slice(0, MAX_DROPDOWN_RESULTS);
     });

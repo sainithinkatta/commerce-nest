@@ -11,9 +11,7 @@ export default {
       const query = state.searchQuery.toLowerCase();
       return state.products.filter(product => {
         return (
-          product.title.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query)
+          product.title.toLowerCase().includes(query)
         );
       });
     }
