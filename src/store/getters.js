@@ -5,6 +5,8 @@ export default {
     cartCount: (state) => {
       return state.cart.reduce((total, item) => total + item.quantity, 0);
     },
+    categories: (state) => state.categories,
+    categoryItems: (state) => state.categoryItems,
     filteredProducts: state => {
       if (!state.searchQuery) return state.products;
       

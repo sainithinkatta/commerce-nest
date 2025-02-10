@@ -8,6 +8,12 @@ export default {
     setSearchQuery(state, query) {
       state.searchQuery = query;
     },
+    setCategories(state, categories) {
+      state.categories = categories;
+    },
+    setCategoryItems(state, categoryItems) {
+      state.categoryItems = categoryItems;
+    },
     addToCart(state, product) {
       const existingItem = state.cart.find(item => item.id === product.id);
   

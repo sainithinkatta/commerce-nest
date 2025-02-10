@@ -4,5 +4,7 @@ export default {
   products: [],
   product: null,
   cart: savedCart,
-  searchQuery: ''
+  searchQuery: '',
+  categories: [],
+  categoryItems: [],
 };

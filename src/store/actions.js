@@ -77,4 +77,14 @@ export default {
         throw error;
       });
   },
+  fetchCategoryItems({ commit }, category) {
+    return axios.get(`${API_URLS.CATEGORY_ITEMS}/${category}`)
+      .then(response => {
+        commit('setCategoryItems', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching product details:', error);
+        throw error;
+      });
+  },
 };
