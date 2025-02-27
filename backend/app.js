@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config");
 const authRoutes = require("./routes/routes");
 
@@ -15,6 +16,7 @@ app.use(cors({
 
 // Middleware
 app.use(express.json({ limit: "25mb" }));
+app.use(cookieParser());
 
 // Database Connection
 connectDB();

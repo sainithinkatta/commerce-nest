@@ -7,4 +7,6 @@ export default {
   searchQuery: '',
   categories: [],
   categoryItems: [],
+  user: null,
+  isAuthenticated: false,
 };

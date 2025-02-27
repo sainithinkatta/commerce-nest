@@ -1,7 +1,114 @@
+
 import axios from 'axios';
 import API_URLS from '../api/apiUrls';
 
 export default {
+  createAccount({ commit }, userData) {
+    return axios.post(API_URLS.CREATE_ACCOUNT, userData)
+      .then(response => {
+        if (response.data.error) {
+          return { 
+            success: false, 
+            message: response.data.message || 'Registration failed' 
+          };
+        }
+
+        commit('setUser', response.data.user);
+
+        return { 
+          success: true, 
+          message: response.data.message || 'Registration successful' 
+        };
+      })
+      .catch(error => {
+        console.error('Registration failed', error);
+        throw new Error(error.response?.data?.message || 'Registration failed');
+      });
+  },
+  userLogin({ commit }, credentials) {
+    return axios.post(API_URLS.LOGIN, credentials, {
+      withCredentials: true,
+    })
+      .then(response => {
+        if (response.data.error) {
+          return { 
+            success: false, 
+            message: response.data.message || 'Login failed' 
+          };
+        }
+
+        commit('setUser', response.data.user);
+  
+        return { 
+          success: true, 
+          message: response.data.message || 'Login successful' 
+        };
+      })
+      .catch(error => {
+        console.error('Login failed', error);
+        return { 
+          success: false, 
+          message: error.response?.data?.message || 'Login failed' 
+        };
+      });
+  },
+  checkAuth({ commit }) {
+    return axios.get('/checkAuth', { withCredentials: true })
+        .then(response => {
+            if (response.data.success) {
+              commit('setUser', response.data.user);
+            } else {
+              commit('setUser', null);
+            }
+        })
+        .catch(error => {
+            commit('setUser', null);
+            console.error("Authentication check failed:", error);
+          });
+  },
+  fetchUserDetails({ commit }) {
+    return axios.get(API_URLS.FETCH_USER)
+      .then(response => {
+        if (response.data.success) {
+          commit('setUser', response.data.user);
+          return true;
+        } else {
+          commit('setUser', null);
+          return false;
+        }
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 401) {
+          commit('setUser', null);
+        }
+        console.error('Error fetching user details', error);
+        throw new Error(error.response?.data?.message || 'Failed to fetch user details');
+      });
+  },
+  logout({ commit }) {
+    return axios.post(API_URLS.LOGOUT)
+        .then(response => {
+            if (!response.data.error) {
+                commit('setUser', null);
+                return {
+                    success: true,
+                    message: response.data.message || 'Logged out successfully'
+                };
+            } else {
+                return {
+                    success: false,
+                    message: response.data.message || 'Logout failed'
+                };
+            }
+        })
+        .catch(error => {
+            if (error.response && error.response.status === 401) {
+                commit('setUser', null); // Clear user state if unauthorized
+            }
+            console.error('Logout failed', error);
+            throw new Error(error.response?.data?.message || 'Logout failed');
+        });
+  },
   fetchProducts({ commit }) {
     return axios.get(API_URLS.PRODUCTS)
       .then(response => {

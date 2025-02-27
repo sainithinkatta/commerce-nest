@@ -1,4 +1,6 @@
 export default {
+    isAuthenticated: (state) => state.isAuthenticated,
+    user: state => state.user,
     products: (state) => state.products,
     product: (state) => state.product,
     cart: (state) => state.cart,
