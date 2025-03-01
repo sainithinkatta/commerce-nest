@@ -2,14 +2,14 @@
 
 ## 1. Project Overview
 
-**CommerceNest** is a full-stack application built using the **MERN stack**  (MongoDB, Express.js, Vue.js, Node.js). 
-This platform allows users to browse and manage products, add them to the cart, update quantities, and securely proceed with checkout.
+**CommerceNest** is a full-stack application built using MongoDB, Express.js, Vue.js, Node.js. 
+This platform allows users to browse and manage products, search them, add them to the cart, update quantities, and securely proceed with checkout.
 The application features a dynamic, responsive front-end built with Vue.js and Vite for fast development and optimized builds. 
 The front-end is styled using TailwindCSS, providing an intuitive, user-friendly experience. 
-The back-end is powered by Express.js, which handles API routes for product management, user authentication, and cart operations.
+The back-end is powered by Express.js, which handles API routes user authentication.
 MongoDB serves as the database for managing user accounts, products, and cart data.
 
-Commerce Nest integrates with a public product API (fakestoreapi.com) to fetch product details, and users can interact with a full-featured cart system, allowing them to increase, decrease, or remove products from the cart. 
+CommerceNest integrates with a public product API (fakestoreapi.com) to fetch product details and users can interact with a full-featured cart system, allowing them to increase, decrease, or remove products from the cart. 
 Upon checkout, users receive a confirmation email containing the details of their order.
 
 
@@ -18,16 +18,20 @@ Key Features
 - **Product Page**: View available products and add them to the cart.
 - **Product Detail Page**: View detailed product information and add to cart.
 
+### Search Operations:
+- Search products that you want to look out.
+- Search bar display list of available items from the query.
+
 ### Cart Operations:
 - Modify product quantity or remove items from the cart.
 - Proceed to checkout and receive email confirmation of the purchase.
 
 ### User Authentication:
 - Secure sign-up and login using JWT tokens.
-- MongoDB is used for storing user credentials and cart data.
+- MongoDB is used for storing user credentials.
 
 ### Responsive UI:
-- Built with **React.js** and styled using **TailwindCSS** for a responsive design across devices.
+- Built with **Vue.js** and styled using **TailwindCSS** for a responsive design across devices.
 
 ### Backend API:
 - **Express.js**: Manages user authentication, product management, cart operations, and checkout.
