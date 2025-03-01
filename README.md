@@ -12,33 +12,16 @@ MongoDB serves as the database for managing user accounts, products, and cart da
 CommerceNest integrates with a public product API (fakestoreapi.com) to fetch product details and users can interact with a full-featured cart system, allowing them to increase, decrease, or remove products from the cart. 
 Upon checkout, users receive a confirmation email containing the details of their order.
 
-
-Key Features
-### Product Management:
+Key Features:
+- **User Authentication**: Secure sign-up and login using JWT tokens.
 - **Product Page**: View available products and add them to the cart.
 - **Product Detail Page**: View detailed product information and add to cart.
-
-### Search Operations:
-- Search products that you want to look out.
-- Search bar display list of available items from the query.
-
-### Cart Operations:
-- Modify product quantity or remove items from the cart.
-- Proceed to checkout and receive email confirmation of the purchase.
-
-### User Authentication:
-- Secure sign-up and login using JWT tokens.
-- MongoDB is used for storing user credentials.
-
-### Responsive UI:
-- Built with **Vue.js** and styled using **TailwindCSS** for a responsive design across devices.
-
-### Backend API:
-- **Express.js**: Manages user authentication, product management, cart operations, and checkout.
-- Product data fetched from **fakestoreapi.com**.
-
-### Email Notifications:
-- After checkout, users receive an email with a list of purchased products.
+- **Search Product**: Search products that you want to look out.
+- **Selecting Searched Product**: Search bar display list of available items from the query.
+- **Cart Operations**: Search bar display list of available items from the query.
+- **Responsive UI**: Built with **Vue.js** and styled using **TailwindCSS** for a responsive design across devices.
+- **Backend API**: Product data fetched from **fakestoreapi.com**.
+- **Email Notifications**: After checkout, users receive an email with a list of purchased products.
 
 
 ## 2. Tech Stack
