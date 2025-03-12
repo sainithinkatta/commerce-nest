@@ -8,8 +8,10 @@ const authRoutes = require("./routes/routes");
 
 const app = express();
 
+app.options('*', cors());  // Handle preflight requests
+
 app.use(cors({
-    origin: '*',
+    origin: 'http://localhost:5173',
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }));
