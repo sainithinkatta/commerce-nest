@@ -8,11 +8,11 @@ const authRoutes = require("./routes/routes");
 
 const app = express();
 
-app.use(cors({ 
-    origin: 'http://localhost:5173',
-    methods: ["GET", "POST"],
+app.use(cors({
+    origin: '*',
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-}));
+  }));
 
 // Middleware
 app.use(express.json({ limit: "25mb" }));
