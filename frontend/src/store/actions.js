@@ -4,7 +4,7 @@ import API_URLS from '../api/apiUrls';
 
 export default {
   createAccount({ commit }, userData) {
-    return axios.post(API_URLS.CREATE_ACCOUNT, userData)
+    return axios.post(API_URLS.CREATE_ACCOUNT, userData, { withCredentials: true })
       .then(response => {
         if (response.data.error) {
           return { 
@@ -26,9 +26,7 @@ export default {
       });
   },
   userLogin({ commit }, credentials) {
-    return axios.post(API_URLS.LOGIN, credentials, {
-      withCredentials: true,
-    })
+    return axios.post(API_URLS.LOGIN, credentials, { withCredentials: true })
       .then(response => {
         if (response.data.error) {
           return { 
@@ -67,7 +65,7 @@ export default {
           });
   },
   fetchUserDetails({ commit }) {
-    return axios.get(API_URLS.FETCH_USER)
+    return axios.get(API_URLS.FETCH_USER, { withCredentials: true })
       .then(response => {
         if (response.data.success) {
           commit('setUser', response.data.user);
@@ -86,7 +84,7 @@ export default {
       });
   },
   logout({ commit }) {
-    return axios.post(API_URLS.LOGOUT)
+    return axios.post(API_URLS.LOGOUT, {}, { withCredentials: true })
         .then(response => {
             if (!response.data.error) {
                 commit('setUser', null);

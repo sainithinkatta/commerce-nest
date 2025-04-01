@@ -1,10 +1,10 @@
-const BASE_URL = 'https://commerce-nest-backend.vercel.app'
+const BASE_URL = 'http://localhost:8000/api'
 
 const API_URLS = {
-    LOGIN: `${BASE_URL}/api/login`,
-    CREATE_ACCOUNT: `${BASE_URL}/api/create-account`,
-    LOGOUT: `${BASE_URL}/api/logout`,
-    FETCH_USER: `${BASE_URL}/api/get-user`,
+    LOGIN: `${BASE_URL}/login`,
+    CREATE_ACCOUNT: `${BASE_URL}/create-account`,
+    LOGOUT: `${BASE_URL}/logout`,
+    FETCH_USER: `${BASE_URL}/get-user`,
     PRODUCTS: 'https://fakestoreapi.com/products',
     CATEGORIES: 'https://fakestoreapi.com/products/categories',
     CATEGORY_ITEMS: 'https://fakestoreapi.com/products/category',

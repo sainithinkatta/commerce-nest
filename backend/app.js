@@ -8,13 +8,12 @@ const authRoutes = require("./routes/routes");
 
 const app = express();
 
-app.options('*', cors());  // Handle preflight requests
-
-app.use(cors({
+const corsOptions = {
     origin: 'http://localhost:5173',
-    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-  }));
+};
+
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(express.json({ limit: "25mb" }));
